@@ -30,6 +30,7 @@ DGEQRF, DORGQR = Base.LinAlg.LAPACK.geqrf!, Base.LinAlg.LAPACK.orgqr!
 function compute_svd(m::Integer,n::Integer,A::DArray,k::Integer,l::Integer,N::Integer,tol::Real)
    iter, IJ     = true, 1
    cols         = [1:n]
+   cols_used    = 0*cols
    cols_curr    = rand_cols(cols, cols_used, k)
    A_tmp        = @parallel (hcat) for i in cols[cols_curr] ; A[:,i]; end
    X            = run_orth(A_tmp)
@@ -62,6 +63,7 @@ end
 function compute_svd(m::Integer,n::Integer,A::AbstractMatrix,k::Integer,l::Integer,N::Integer,tol::Real)
    iter, IJ     = true, 1
    cols         = [1:n]
+   cols_used    = 0*cols
    cols_curr    = rand_cols(cols, cols_used, k)
    X            = run_orth(A[:,cols_curr])
    (Bo_x, Bo_y) = compute_B(X, A, k)
