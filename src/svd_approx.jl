@@ -9,7 +9,7 @@
 ### =  ( 3) l*   :: Number of columns to sample at each iteration.
 ### =  ( 4) N*   :: Maximum number of iterations.
 ### =  ( 5) tol* :: Tolerance for exiting the iterative process.
-### =  ( *) Starred options are optional.
+### =  ( *) Starred arguments are optional.
 ### =----------------------------------------------------------------------
 ### = OUTPUTS:
 ### =  ( 1) U :: The k largest left-singular vectors [m x k].
@@ -39,13 +39,12 @@ svd_approx(A::DArray,k::Integer,l::Integer,N::Integer) = svd_approx(A,k,l,N,d_to
 svd_approx(A::DArray,k::Integer,l::Integer,N::Integer,tol::Real) = svd_approx(A,k,l,N,tol)
 
 ### Driver function
+require(Pkg.dir("SVDapprox","src","compute_svd.jl"))
 function svd_approx(A::AbstractMatrix,k::Integer,l::Integer,N::Integer=d_N,tol::Real=d_tol)
-   require(Pkg.dir("SVDapprox","src","compute_svd.jl"))
    (m,n) = size(A)
    return compute_svd(m, n, A, k, l, N, tol)
 end
 function svd_approx(A::DArray,k::Integer,l::Integer,N::Integer=d_N,tol::Real=d_tol)
-   require(Pkg.dir("SVDapprox","src","compute_svd.jl"))
    (m,n) = size(A)
    return compute_svd(m, n, A, k, l, N, tol)
 end

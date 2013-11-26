@@ -23,7 +23,7 @@
 ### =  ( 4) N*   :: Maximum number of iterations.
 ### =  ( 5) tol* :: Tolerance for exiting the iterative process.
 ### =  ( 6) pro* :: Profile the code?
-### =  ( *) Starred options are optional.
+### =  ( *) Starred arguments are optional.
 ### =----------------------------------------------------------------------
 ### = OUTPUTS:
 ### =  ( 1) U :: The k largest left-singular vectors [m x k].
